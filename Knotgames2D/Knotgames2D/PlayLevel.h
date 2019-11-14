@@ -8,7 +8,6 @@ class PlayLevel :public Scene
 	GameObject* sides[4];
 	GameObject* tiles[108];
 	GameObject* ball;
-	GameObject* testBrick;
 
 public:
 	virtual void Start();

@@ -121,4 +121,14 @@ void Editor::Save()
 void Editor::Close()
 {
 	std::cout << "Editor Closed..." << std::endl;
+
+	for (size_t i = 0; i < 108; i++)
+	{
+		if (tilesSprites[i] != nullptr)
+		{
+			tilesArray[i] = 0;
+			tilesSprites[i]->setTexture(*engine->blankTexture);
+		}
+	}
+
 }

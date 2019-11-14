@@ -7,10 +7,12 @@
 class GameObject
 {
 	Engine* engine;
-	sf::Sprite* pic;
+	
 public :
 
 	Rigidbody* rb;
+	sf::Sprite* pic;
+	bool alive = false;
 
 	GameObject(sf::Vector2f, std::string path);
 

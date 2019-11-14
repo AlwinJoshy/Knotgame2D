@@ -25,6 +25,7 @@ void PlayLevel::Start()
 	// floor
 	sides[0] = new GameObject(sf::Vector2f(engine->screenRes.x * 0.5f, engine->screenRes.y + 16), "floor.png");
 	sides[0]->rb->isKinamatic = true;
+
 	// roof
 	sides[1] = new GameObject(sf::Vector2f(engine->screenRes.x * 0.5f, -16), "floor.png");
 	sides[1]->rb->isKinamatic = true;
@@ -32,6 +33,7 @@ void PlayLevel::Start()
 	// left
 	sides[2] = new GameObject(sf::Vector2f(-16, engine->screenRes.y * 0.5f), "wall.png");
 	sides[2]->rb->isKinamatic = true;
+
 	// right
 	sides[3] = new GameObject(sf::Vector2f(engine->screenRes.x + 16, engine->screenRes.y * 0.5f), "wall.png");
 	sides[3]->rb->isKinamatic = true;
@@ -64,7 +66,9 @@ void PlayLevel::LoadTiles()
 			int x = i - (12 * y);
 			//engine->AddRenderer("brickRed.png", sf::Vector2f(x * 64,y * 32));
 			// make game object
+			
 			tiles[i] = new GameObject(sf::Vector2f((x * 64) + 32, (y * 32) + 16), "brickRed.png");
+			tiles[i]->alive = true;
 			tiles[i]->rb->isKinamatic = true;
 		}
 	}
@@ -134,4 +138,19 @@ void PlayLevel::GUIActions(int buttonID)
 void PlayLevel::Close()
 {
 	// clear all game objet
+	for (int i = 0; i < 108; i++)
+	{
+		if (tiles[i] != nullptr)
+		{
+			tiles[i]->alive = false;
+			tiles[i]->pic->setTexture(*engine->blankTexture);
+		//	delete(tiles[i]->rb);
+
+		//	delete(tiles[i]);
+		}
+	//	delete(tiles[i]);
+	//	tiles[i]->rb->isKinamatic = true;
+	}
+
+
 }

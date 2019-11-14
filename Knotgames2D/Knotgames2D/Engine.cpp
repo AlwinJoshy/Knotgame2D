@@ -118,7 +118,7 @@ void Engine::Physics()
 						{
 							std::cout << "hit at top" << std::endl;
 							actionNormal.y += 1;
-							if(!rbd[j].isKinamatic)offset.y += totalH - (b1.top + b1.height - b2.top);
+							offset.y += totalH - (b1.top + b1.height - b2.top);
 							solved = true;
 						}
 
@@ -127,7 +127,7 @@ void Engine::Physics()
 						{
 							std::cout << "hit at bottom" << std::endl;
 							actionNormal.y += -1;
-							if (!rbd[j].isKinamatic)offset.y += (b2.top + b2.height - b1.top) - totalH;
+							offset.y += (b2.top + b2.height - b1.top) - totalH;
 							solved = true;
 						}
 
@@ -136,7 +136,7 @@ void Engine::Physics()
 						{
 							std::cout << "hit at left" << std::endl;
 							actionNormal.x += 1;
-							if (!rbd[j].isKinamatic)offset.x += totalW - (b1.left + b1.width - b2.left);
+							offset.x += totalW - (b1.left + b1.width - b2.left);
 							solved = true;
 						}
 
@@ -145,7 +145,7 @@ void Engine::Physics()
 						{
 							std::cout << "hit at right" << std::endl;
 							actionNormal.x += -1;
-							if (!rbd[j].isKinamatic)offset.x += (b2.left + b2.width - b1.left) - totalW;
+							offset.x += (b2.left + b2.width - b1.left) - totalW;
 							solved = true;
 						}
 
