@@ -36,6 +36,7 @@ void Engine:: Test()
 
 void Engine::Init()
 {
+	stayAlive = true;
 	cir = new sf::CircleShape(5);
 	cir->setOrigin(sf::Vector2f(3.5, 3.5));
 
@@ -572,7 +573,7 @@ void Engine::Run()
 {
 	if(!initialized) Init();
 
-	while(window->isOpen())
+	while(window->isOpen() && stayAlive)
 	{
 		sf::Int32 currentTime = clock.getElapsedTime().asMilliseconds();
 

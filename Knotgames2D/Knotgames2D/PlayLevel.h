@@ -5,6 +5,7 @@
 
 class PlayLevel :public Scene
 {
+	GameObject* testBrick;
 	GameObject* sides[4];
 	GameObject* tiles[108];
 	GameObject* ball;

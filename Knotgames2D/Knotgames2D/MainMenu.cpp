@@ -60,6 +60,10 @@ void MainMenu::GUIActions(int buttonID)
 			Program::Instanciate()->ShiftScene(1);
 			break;
 
+		case 3:
+			Engine::Instanciate()->stayAlive = false;
+			break;
+
 		default:
 			break;
 	}

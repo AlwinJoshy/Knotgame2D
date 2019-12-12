@@ -6,9 +6,13 @@
 
 class Engine
 {
+
+public:
+	bool stayAlive;
+
 private:
 	static Engine* instance;
-
+	
 	sf::Vector2f offset;
 	sf::Vector2f actionNormal;
 	bool initialized;
