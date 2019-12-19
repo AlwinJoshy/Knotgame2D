@@ -67,7 +67,28 @@ void PlayLevel::LoadTiles()
 			//engine->AddRenderer("brickRed.png", sf::Vector2f(x * 64,y * 32));
 			// make game object
 			
-			tiles[i] = new GameObject(sf::Vector2f((x * 64) + 32, (y * 32) + 16), "brickRed.png");
+			switch (tileSet.tiles[i])
+			{
+
+			// red brick
+			case 1 :
+				tiles[i] = new GameObject(sf::Vector2f((x * 64) + 32, (y * 32) + 16), "brickRed.png");
+				break;
+
+				// stone
+			case 2:
+				tiles[i] = new GameObject(sf::Vector2f((x * 64) + 32, (y * 32) + 16), "stone.png");
+				break;
+
+				// crystal
+			case 3:
+				tiles[i] = new GameObject(sf::Vector2f((x * 64) + 32, (y * 32) + 16), "crystal.png");
+				break;
+
+			default:
+				break;
+			}
+
 			tiles[i]->alive = true;
 			tiles[i]->rb->isKinamatic = true;
 		}
@@ -82,10 +103,7 @@ void PlayLevel::Play()
 
 void PlayLevel::Physics()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		Program::Instanciate()->ShiftScene(0);
-	}
+	
 	sf::Vector2f puckOffset = sf::Vector2f(sf::Mouse::getPosition(*engine->window).x - testBrick->rb->image->getPosition().x, 
 		450 - testBrick->rb->image->getPosition().y);
 	if(testBrick->rb->image->getPosition().x < 64)
@@ -104,6 +122,10 @@ void PlayLevel::Physics()
 void PlayLevel::OnGUI()
 {
 	sf::Vector2i mousePos = sf::Mouse::getPosition(*engine->window);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		Program::Instanciate()->ShiftScene(0);
+	}
 	/*
 	for (int i = 0; i < buttonCount; i++)
 	{

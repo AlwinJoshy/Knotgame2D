@@ -50,16 +50,22 @@ void MainMenu::GUIActions(int buttonID)
 {
 	switch (buttonID)
 	{
+		// open game scene
 		case 0:
-			// open game scene
 			Program::Instanciate()->ShiftScene(2);
 			break;
 
+		// Editor
 		case 1:
-		//	program->ShiftScene(2);
 			Program::Instanciate()->ShiftScene(1);
 			break;
 
+		// Credits
+		case 2:
+			Program::Instanciate()->ShiftScene(3);
+			break;
+
+		// Quit game
 		case 3:
 			Engine::Instanciate()->stayAlive = false;
 			break;

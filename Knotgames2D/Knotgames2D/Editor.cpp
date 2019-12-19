@@ -7,6 +7,9 @@
 
 void Editor::Start()
 {
+	// setting brick type
+	currentBrick = 1;
+
 	// adding gridlines..
 	engine = Engine::Instanciate();
 		   
@@ -27,14 +30,14 @@ void Editor::Start()
 
 	buttons[0] = Button("Save", sf::Color(0, 0, 0, 255), sf::Vector2f(60, engine->screenRes.y / 2));
 	buttons[1] = Button("Exit", sf::Color(0, 0, 0, 255), sf::Vector2f(60, 30 + engine->screenRes.y / 2));
-	//buttons[2] = Button("Credits", sf::Color(0, 0, 0, 255), sf::Vector2f(engine->screenRes.x / 2, 60 + engine->screenRes.y / 2));
-	//buttons[3] = Button("Quit", sf::Color(0, 0, 0, 255), sf::Vector2f(engine->screenRes.x / 2, 90 + engine->screenRes.y / 2));
-	
-	buttonCount = 2;
+	buttons[2] = Button("Brick", sf::Color(0, 0, 0, 255), sf::Vector2f(60, 60 + engine->screenRes.y / 2));
+	buttons[3] = Button("Stone", sf::Color(0, 0, 0, 255), sf::Vector2f(180, 60 + engine->screenRes.y / 2));
+	buttons[4] = Button("Crystal", sf::Color(0, 0, 0, 255), sf::Vector2f(310, 60 + engine->screenRes.y / 2));
+
+	buttonCount = 5;
 
 	std::cout << "Editor Started..." << std::endl;
 
-	
 }
 
 void Editor::OnGUI()
@@ -64,6 +67,18 @@ void Editor::GUIActions(int buttonID)
 		Program::Instanciate()->ShiftScene(0);
 		break;
 
+	case 2:
+		currentBrick = 1;
+		break;
+
+	case 3:
+		currentBrick = 2;
+		break;
+
+	case 4:
+		currentBrick = 3;
+		break;
+
 	default:
 		break;
 	}
@@ -89,17 +104,46 @@ void Editor::Play()
 				if (tileIndex >= 0 && tileIndex < 108)
 				{
 					InputK::leftMousePressed = true;
+
 					// if slot empty
-					if (tilesArray[tileIndex] == 0)
+					if (tilesArray[tileIndex] == 0 || tilesArray[tileIndex] != currentBrick)
 					{
-						tilesArray[tileIndex] = 1;
-						tilesSprites[tileIndex] = engine->AddRenderer("brickRed.png", sf::Vector2f(xTilePos + 32, yTilePos + 16));
+						if (tilesArray[tileIndex] != 0)
+						{
+						//	tilesArray[tileIndex] = 0;
+							tilesSprites[tileIndex]->setTexture(*engine->blankTexture);
+						}
+
+						tilesArray[tileIndex] = currentBrick;
+
+						switch (currentBrick)
+						{
+						// brick
+						case 1 :
+							tilesSprites[tileIndex] = engine->AddRenderer("brickRed.png", sf::Vector2f(xTilePos + 32, yTilePos + 16));
+							break;
+
+						// stone
+						case 2:
+							tilesSprites[tileIndex] = engine->AddRenderer("stone.png", sf::Vector2f(xTilePos + 32, yTilePos + 16));
+							break;
+
+						// crystal
+						case 3:
+							tilesSprites[tileIndex] = engine->AddRenderer("crystal.png", sf::Vector2f(xTilePos + 32, yTilePos + 16));
+							break;
+
+						default:
+							break;
+						}
+						
 					}
 					// if slot occupied
 					else 
 					{
 						tilesArray[tileIndex] = 0;
 						tilesSprites[tileIndex]->setTexture(*engine->blankTexture);
+
 					}
 				}
 			}

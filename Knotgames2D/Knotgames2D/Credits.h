@@ -2,19 +2,18 @@
 #include "Scene.h"
 #include "SFML/Graphics.hpp"
 
-class Editor : public Scene
+class Credits :public Scene
 {
-private:
-	int currentBrick;
-	int tilesArray[108];
-	sf::Sprite* tilesSprites[108];
 
-public :
+
+public:
+	sf::Sprite creditImage;
 	virtual void Start();
+	void LoadTiles();
+	virtual void Play();
+	void Physics();
 	void OnGUI();
 	void GUIActions(int buttonID);
-	virtual void Play();
-	void Save();
 	virtual void Close();
 };
 

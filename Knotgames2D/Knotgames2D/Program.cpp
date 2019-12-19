@@ -5,6 +5,7 @@
 #include "Editor.h"
 #include "MainMenu.h"
 #include "PlayLevel.h"
+#include "Credits.h"
 
 
 int Program::sceneID = 0;
@@ -26,6 +27,7 @@ void Program::Initialize()
 	allScenes[0] = new MainMenu();
 	allScenes[1] = new Editor();
 	allScenes[2] = new PlayLevel();
+	allScenes[3] = new Credits();
 
 	allScenes[sceneID]->Start();
 //	Engine::Instanciate()->Reset();
